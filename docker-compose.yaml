@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16.0
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  api:
+    image: secunda_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile.api
+    env_file:
+      - .env
+    command: >
+      bash -c "poetry run alembic upgrade head &&
+               poetry run python fill_test_data.py &&
+               poetry run python -m presentation.api.app"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  db-data:
