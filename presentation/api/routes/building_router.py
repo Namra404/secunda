@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
-from configuration.entities.buildings import Building
+from domain.entities.buildings import Building
 from configuration.exceptions import DuplicateBuildingAddressError, BuildingCreateError, BuildingNotFoundError
 from infrastructure.services.buildings import BuildingService
 from presentation.api.dependencies import get_building_service

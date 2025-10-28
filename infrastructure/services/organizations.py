@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from configuration.entities.organizations import Organization
+from domain.entities.organizations import Organization
 from infrastructure.repositories.organizations import OrganizationsRepository
 
 

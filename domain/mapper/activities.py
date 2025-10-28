@@ -1,4 +1,4 @@
-from configuration.entities.activities import Activity
+from domain.entities.activities import Activity
 from infrastructure.db.models import ActivityModel
 
 def map_activity_to_entity(model: ActivityModel) -> Activity:

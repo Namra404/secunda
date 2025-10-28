@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from configuration.entities.buildings import Building
+from domain.entities.buildings import Building
 from infrastructure.repositories.buildings import BuildingsRepository
 
 

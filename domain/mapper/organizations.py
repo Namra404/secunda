@@ -1,5 +1,5 @@
-from configuration.entities.organizations import Organization
-from configuration.mapper.activities import map_activity_to_entity
+from domain.entities.organizations import Organization
+from domain.mapper.activities import map_activity_to_entity
 from infrastructure.db.models import OrganizationModel
 
 def map_organization_to_entity(model: OrganizationModel | None) -> Organization | None:

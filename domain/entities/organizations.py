@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from configuration.entities.activities import Activity
+from domain.entities.activities import Activity
 
 @dataclass
 class Organization:

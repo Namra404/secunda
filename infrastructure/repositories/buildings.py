@@ -3,9 +3,9 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from configuration.entities.buildings import Building
+from domain.entities.buildings import Building
 from configuration.exceptions import DuplicateBuildingAddressError, BuildingCreateError, BuildingNotFoundError
-from configuration.mapper.buildings import map_building_to_entity
+from domain.mapper.buildings import map_building_to_entity
 from infrastructure.db.models import BuildingModel
 
 

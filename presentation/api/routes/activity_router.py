@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
-from configuration.entities.activities import Activity
+from domain.entities.activities import Activity
 from configuration.exceptions import ParentActivityNotFoundError, ActivityDepthLimitError, ActivityNotFoundError, ActivityHasChildrenError
 from infrastructure.services.activities import ActivitiesService
 from presentation.api.dependencies import get_activities_service

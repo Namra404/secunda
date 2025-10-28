@@ -4,9 +4,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from configuration.entities.organizations import Organization
+from domain.entities.organizations import Organization
 from configuration.exceptions import OrganizationNotFoundError, OrganizationCreateError, ActivityNotFoundError
-from configuration.mapper.organizations import map_organization_to_entity
+from domain.mapper.organizations import map_organization_to_entity
 from infrastructure.db.models import OrganizationModel, OrganizationPhoneModel, ActivityModel, BuildingModel
 from infrastructure.repositories.activities import ActivitiesRepository
 

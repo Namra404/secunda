@@ -3,8 +3,8 @@ from uuid import UUID
 from fastapi import HTTPException, Depends, APIRouter
 from starlette import status
 
-from configuration.entities.activities import Activity
-from configuration.entities.organizations import Organization
+from domain.entities.activities import Activity
+from domain.entities.organizations import Organization
 from configuration.exceptions import OrganizationCreateError, ActivityNotFoundError
 from infrastructure.services.organizations import OrganizationsService
 from presentation.api.dependencies import get_organizations_service

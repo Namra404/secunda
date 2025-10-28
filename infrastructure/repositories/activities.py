@@ -3,10 +3,10 @@ from uuid import UUID
 from sqlalchemy import select, literal, func, delete, exists
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from configuration.entities.activities import Activity
+from domain.entities.activities import Activity
 from configuration.exceptions import ParentActivityNotFoundError, ActivityDepthLimitError, ActivityNotFoundError, \
     ActivityHasChildrenError
-from configuration.mapper.activities import map_activity_to_entity
+from domain.mapper.activities import map_activity_to_entity
 from infrastructure.db.models import ActivityModel
 
 class ActivitiesRepository:
