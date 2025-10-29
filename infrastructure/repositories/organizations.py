@@ -73,9 +73,9 @@ class OrganizationsRepository:
 
             await self.session.commit()
             await self.session.refresh(organization_model)
-        except Exception:
+        except Exception as e:
             await self.session.rollback()
-            raise OrganizationCreateError
+            raise OrganizationCreateError(str(e))
         return map_organization_to_entity(organization_model)
 
     async def list_all(self):

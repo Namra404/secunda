@@ -29,8 +29,8 @@ async def create_organization(
     )
     try:
         created = await service.create(org_entity)
-    except OrganizationCreateError:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Ошибка при создании организации")
+    except OrganizationCreateError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Ошибка при создании организации: {e.msg}")
     return _to_organization_response(created)
 
 @router.get("/", response_model=OrganizationsListResponse)

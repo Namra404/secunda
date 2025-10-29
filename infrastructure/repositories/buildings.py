@@ -31,11 +31,10 @@ class BuildingsRepository:
         )
         try:
             self.session.add(building_model)
-            # await self.session.flush()
             await self.session.commit()
-        except Exception:
+        except Exception as e:
             await self.session.rollback()
-            raise BuildingCreateError
+            raise BuildingCreateError(str(e))
 
         return map_building_to_entity(building_model)
 

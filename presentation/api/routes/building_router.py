@@ -24,11 +24,11 @@ async def create_building(building_data: BuildingsCreate, building_service: Buil
         building = await building_service.create_building(building=building_entity)
     except DuplicateBuildingAddressError:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Здание с адресом '{building_data.address}' уже существует")
-    except BuildingCreateError:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Ошибка при создании здания")
+    except BuildingCreateError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Ошибка при создании здания: {e.msg}")
     return _building_entity_to_response(building=building)
 
-@router.get('/{user_id}', response_model=BuildingsResponse)
+@router.get('/{building_id}', response_model=BuildingsResponse)
 async def get_building(building_id: UUID, building_service: BuildingService = Depends(get_building_service)):
     """Получить пользователя по ID"""
     try:
@@ -65,6 +65,6 @@ def _building_entity_to_response(building: Building) -> BuildingsResponse:
     return BuildingsResponse(
         id=building.id,
         address=building.address,
-        latitude=building.longitude,
-        longitude=building.latitude,
+        latitude=building.latitude,
+        longitude=building.longitude,
     )
